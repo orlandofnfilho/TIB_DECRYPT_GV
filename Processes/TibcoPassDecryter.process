@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pd:ProcessDefinition xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:pd="http://xmlns.tibco.com/bw/process/2003" xmlns:ns="http://www.tibco.com/pe/WriteToLogActivitySchema" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tib="http://www.tibco.com/bw/xslt/custom-functions">
+    <pd:name>Processes/TibcoPassDecryter.process</pd:name>
+    <pd:startName>Start</pd:startName>
+    <pd:startType>
+        <xsd:element name="password" type="xsd:string"/>
+    </pd:startType>
+    <pd:startX>62</pd:startX>
+    <pd:startY>67</pd:startY>
+    <pd:returnBindings/>
+    <pd:endName>End</pd:endName>
+    <pd:endX>314</pd:endX>
+    <pd:endY>65</pd:endY>
+    <pd:errorSchemas/>
+    <pd:processVariables/>
+    <pd:targetNamespace>http://xmlns.example.com/1708254969930</pd:targetNamespace>
+    <pd:activity name="PasswordDecrypter">
+        <pd:type>com.tibco.plugin.java.JavaActivity</pd:type>
+        <pd:resourceType>ae.javapalette.javaActivity</pd:resourceType>
+        <pd:x>66</pd:x>
+        <pd:y>179</pd:y>
+        <config>
+            <fileName>TibcoPassDecryterPasswordDecrypter</fileName>
+            <packageName>Processes.TibcoPassDecryter</packageName>
+            <fullsource>package Processes.TibcoPassDecryter;
+import java.util.*;
+import java.io.*;
+import com.tibco.security.ObfuscationEngine;
+public class TibcoPassDecryterPasswordDecrypter{
+/****** START SET/GET METHOD, DO NOT MODIFY *****/
+	protected String Input = "";
+	protected String Output = "";
+	public String getInput() {
+		return Input;
+	}
+	public void setInput(String val) {
+		Input = val;
+	}
+	public String getOutput() {
+		return Output;
+	}
+	public void setOutput(String val) {
+		Output = val;
+	}
+/****** END SET/GET METHOD, DO NOT MODIFY *****/
+	public TibcoPassDecryterPasswordDecrypter() {
+ }
+ public void invoke() throws Exception {
+/* Available Variables: DO NOT MODIFY
+	In  : String Input
+	Out : String Output
+* Available Variables: DO NOT MODIFY *****/
+String var = new String(ObfuscationEngine.decrypt(Input));
+ Output=var;
+}
+}
+</fullsource>
+            <inputData>
+                <row>
+                    <fieldName>Input</fieldName>
+                    <fieldType>string</fieldType>
+                    <fieldRequired>required</fieldRequired>
+                </row>
+            </inputData>
+            <outputData>
+                <row>
+                    <fieldName>Output</fieldName>
+                    <fieldType>string</fieldType>
+                    <fieldRequired>required</fieldRequired>
+                </row>
+            </outputData>
+            <byteCode>
+                <class>
+                    <name>TibcoPassDecryterPasswordDecrypter</name>
+                    <byteCode>yv66vgAAADQAKwkACAAcCQAIAB0KAAkAHggAHwcAIAoAIQAiCgAFACMHACQHACUBAAVJbnB1dAEAEkxqYXZhL2xhbmcvU3RyaW5nOwEABk91dHB1dAEACGdldElucHV0AQAUKClMamF2YS9sYW5nL1N0cmluZzsBAARDb2RlAQAPTGluZU51bWJlclRhYmxlAQAIc2V0SW5wdXQBABUoTGphdmEvbGFuZy9TdHJpbmc7KVYBAAlnZXRPdXRwdXQBAAlzZXRPdXRwdXQBAAY8aW5pdD4BAAMoKVYBAAZpbnZva2UBAApFeGNlcHRpb25zBwAmAQAKU291cmNlRmlsZQEAJ1RpYmNvUGFzc0RlY3J5dGVyUGFzc3dvcmREZWNyeXB0ZXIuamF2YQwACgALDAAMAAsMABUAFgEAAAEAEGphdmEvbGFuZy9TdHJpbmcHACcMACgAKQwAFQAqAQA+UHJvY2Vzc2VzL1RpYmNvUGFzc0RlY3J5dGVyL1RpYmNvUGFzc0RlY3J5dGVyUGFzc3dvcmREZWNyeXB0ZXIBABBqYXZhL2xhbmcvT2JqZWN0AQATamF2YS9sYW5nL0V4Y2VwdGlvbgEAJGNvbS90aWJjby9zZWN1cml0eS9PYmZ1c2NhdGlvbkVuZ2luZQEAB2RlY3J5cHQBABYoTGphdmEvbGFuZy9TdHJpbmc7KVtDAQAFKFtDKVYAIQAIAAkAAAACAAQACgALAAAABAAMAAsAAAAGAAEADQAOAAEADwAAAB0AAQABAAAABSq0AAGwAAAAAQAQAAAABgABAAAACgABABEAEgABAA8AAAAiAAIAAgAAAAYqK7UAAbEAAAABABAAAAAKAAIAAAANAAUADgABABMADgABAA8AAAAdAAEAAQAAAAUqtAACsAAAAAEAEAAAAAYAAQAAABAAAQAUABIAAQAPAAAAIgACAAIAAAAGKiu1AAKxAAAAAQAQAAAACgACAAAAEwAFABQAAQAVABYAAQAPAAAANQACAAEAAAARKrcAAyoSBLUAASoSBLUAArEAAAABABAAAAASAAQAAAAWAAQABwAKAAgAEAAXAAEAFwAWAAIADwAAADUAAwACAAAAFbsABVkqtAABuAAGtwAHTCortQACsQAAAAEAEAAAAA4AAwAAAB0ADwAeABQAHwAYAAAABAABABkAAQAaAAAAAgAb</byteCode>
+                </class>
+            </byteCode>
+        </config>
+        <pd:inputBindings>
+            <javaCodeActivityInput>
+                <Input>
+                    <xsl:value-of select="$Start/password"/>
+                </Input>
+            </javaCodeActivityInput>
+        </pd:inputBindings>
+    </pd:activity>
+    <pd:activity name="LogDecryptedPass">
+        <pd:type>com.tibco.pe.core.WriteToLogActivity</pd:type>
+        <pd:resourceType>ae.activities.log</pd:resourceType>
+        <pd:x>183</pd:x>
+        <pd:y>66</pd:y>
+        <config>
+            <role>%%Versao%%</role>
+        </config>
+        <pd:inputBindings>
+            <ns:ActivityInput>
+                <message>
+                    <xsl:value-of select="$PasswordDecrypter/javaCodeActivityOutput/Output"/>
+                </message>
+            </ns:ActivityInput>
+        </pd:inputBindings>
+    </pd:activity>
+    <pd:activity name="LogError">
+        <pd:type>com.tibco.pe.core.WriteToLogActivity</pd:type>
+        <pd:resourceType>ae.activities.log</pd:resourceType>
+        <pd:x>318</pd:x>
+        <pd:y>181</pd:y>
+        <config>
+            <role>Error</role>
+        </config>
+        <pd:inputBindings>
+            <ns:ActivityInput>
+                <message>
+                    <xsl:value-of select="$Catch/exceptiondata/*"/>
+                </message>
+            </ns:ActivityInput>
+        </pd:inputBindings>
+    </pd:activity>
+    <pd:activity name="Catch">
+        <pd:type>com.tibco.pe.core.CatchActivity</pd:type>
+        <pd:resourceType>ae.activities.catch</pd:resourceType>
+        <pd:x>416</pd:x>
+        <pd:y>176</pd:y>
+        <pd:handler>true</pd:handler>
+        <config>
+            <catchAll>true</catchAll>
+        </config>
+        <pd:inputBindings/>
+    </pd:activity>
+    <pd:transition>
+        <pd:from>Start</pd:from>
+        <pd:to>PasswordDecrypter</pd:to>
+        <pd:lineType>Default</pd:lineType>
+        <pd:lineColor>-16777216</pd:lineColor>
+        <pd:conditionType>always</pd:conditionType>
+    </pd:transition>
+    <pd:transition>
+        <pd:from>PasswordDecrypter</pd:from>
+        <pd:to>LogDecryptedPass</pd:to>
+        <pd:lineType>Default</pd:lineType>
+        <pd:lineColor>-16777216</pd:lineColor>
+        <pd:conditionType>always</pd:conditionType>
+    </pd:transition>
+    <pd:transition>
+        <pd:from>LogDecryptedPass</pd:from>
+        <pd:to>End</pd:to>
+        <pd:lineType>Default</pd:lineType>
+        <pd:lineColor>-16777216</pd:lineColor>
+        <pd:conditionType>always</pd:conditionType>
+    </pd:transition>
+    <pd:transition>
+        <pd:from>LogError</pd:from>
+        <pd:to>End</pd:to>
+        <pd:lineType>Default</pd:lineType>
+        <pd:lineColor>-16777216</pd:lineColor>
+        <pd:conditionType>always</pd:conditionType>
+    </pd:transition>
+    <pd:transition>
+        <pd:from>Catch</pd:from>
+        <pd:to>LogError</pd:to>
+        <pd:lineType>Default</pd:lineType>
+        <pd:lineColor>-16777216</pd:lineColor>
+        <pd:conditionType>always</pd:conditionType>
+    </pd:transition>
+</pd:ProcessDefinition>
