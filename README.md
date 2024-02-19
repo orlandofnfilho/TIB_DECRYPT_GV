@@ -38,11 +38,11 @@ String var = new String(ObfuscationEngine.decrypt(Input));
 }
 ```
 
-For Example the GV is like below
+Por exemplo, o password será por padrão como abaixo:
 
-#!oe2FVz/rcjokKW2hIDGE7nSX1U+VKRjA
- 
-Then use the GV value as input for the JavaCode input i.e. "#!oe2FVz/rcjokKW2hIDGE7nSX1U+VKRjA"  then will get the Decrypt value in Output Parameter.
+#!oe2FVz/rcjokKW2hIDGE7nSX1U+VKRjA=
+
+Então use o valor do password como entrada para a entrada do código Java, ou seja, "#!oe2FVz/rcjokKW2hIDGE7nSX1U+VKRjA" (sem aspas), então obteremos o valor descriptografado no parâmetro de saída."
 
 
 ## Créditos
